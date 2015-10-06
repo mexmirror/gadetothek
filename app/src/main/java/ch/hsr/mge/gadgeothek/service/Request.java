@@ -3,7 +3,7 @@ package ch.hsr.mge.gadgeothek.service;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Pair;
-
+    
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 import com.ning.http.client.AsyncHttpClient;
