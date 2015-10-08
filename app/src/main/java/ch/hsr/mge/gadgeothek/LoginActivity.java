@@ -29,8 +29,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onCompletion(Boolean input) {
                         if(input) {
-                            Intent loan = new Intent(LoginActivity.this, LoanActivity.class);
-                            startActivity(loan);
+
                         } else {
                             onError("Username or password not found.\n You may want to register first");
                         }
