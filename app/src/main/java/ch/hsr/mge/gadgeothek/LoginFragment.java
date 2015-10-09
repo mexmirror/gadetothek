@@ -1,8 +1,10 @@
 package ch.hsr.mge.gadgeothek;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +20,43 @@ public class LoginFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        LibraryService.setServerAddress("10.0.2.2:8080");
+        final View view = inflater.inflate(R.layout.fragment_login, container, false);
+        Button loginButton = (Button)view.findViewById(R.id.login_login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mail = ((EditText) view.findViewById(R.id.login_email)).getText().toString();
+                String password = ((EditText) view.findViewById(R.id.login_password)).getText().toString();
+                LibraryService.login(mail, password, new Callback<Boolean>() {
+                    @Override
+                    public void onCompletion(Boolean input) {
+                        if (input) {
+                            Log.d("Login", "success");
+                        } else {
+                            Log.d("Login", "failed");
+                        }
+                    }
 
-        return inflater.inflate(R.layout.fragment_login, container, false);
-    }
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(getActivity(), "Error during login process", Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        getActivity().findViewById(R.id.login_email);
+            }
+        });
+        Button registerButton = (Button)view.findViewById(R.id.login_register);
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content, new RegisterFragment())
+                        .commit();
+            }
+        });
+        return view;
     }
 }

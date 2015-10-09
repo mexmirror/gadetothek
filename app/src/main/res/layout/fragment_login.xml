@@ -51,9 +51,8 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/login_login"
-        android:layout_below="@+id/login_stay_logged_in"
-        android:layout_alignLeft="@+id/login_register"
-        android:layout_alignStart="@+id/login_register" />
+        android:layout_below="@+id/login_password"
+        android:layout_centerHorizontal="true" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -61,16 +60,8 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/login_register"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stay logged in"
-        android:id="@+id/login_stay_logged_in"
-        android:layout_below="@+id/login_password"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
+        android:layout_below="@+id/login_login"
+        android:layout_alignRight="@+id/login_login"
+        android:layout_alignEnd="@+id/login_login" />
 
 </RelativeLayout>

@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        /*setContentView(R.layout.activity_login);
         LibraryService.setServerAddress("localhost:8080");
         Button loginButton = (Button)findViewById(R.id.login_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +46,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }
-        });
+        });*/
     }
 }
