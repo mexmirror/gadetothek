@@ -2,7 +2,7 @@
     <string name="app_name">Gadgeothek</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Server Settings</string>
     <string name="login">Login</string>
     <string name="loan">Loan</string>
     <string name="reservation">Reservation</string>
