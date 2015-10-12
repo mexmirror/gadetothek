@@ -22,6 +22,7 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         LibraryService.setServerAddress("10.0.2.2:8080");
+        //http://mge1.dev.ifs.hsr.ch/public
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
         Button loginButton = (Button)view.findViewById(R.id.login_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
