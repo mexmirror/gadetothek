@@ -21,7 +21,7 @@ public class LoginFragment extends Fragment {
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        LibraryService.setServerAddress("10.0.2.2:8080");
+        LibraryService.setServerAddress("http://mge1.dev.ifs.hsr.ch/public");
         //http://mge1.dev.ifs.hsr.ch/public
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
         Button loginButton = (Button)view.findViewById(R.id.login_login);
@@ -34,9 +34,10 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onCompletion(Boolean input) {
                         if (input) {
-                            Log.d("Login", "success");
+                            getFragmentManager().beginTransaction().replace(R.id.content, new ReservationFragment()).commit();
                         } else {
-                            Log.d("Login", "failed");
+                            Toast.makeText(getActivity(), "Username or password cannot be found. \n You may want to register first", Toast.LENGTH_LONG).show();
+                            ((EditText)view.findViewById(R.id.login_password)).setText("");
                         }
                     }
 
