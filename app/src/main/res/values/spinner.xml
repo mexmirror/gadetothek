@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="server_array">
-        <item>Server 1</item>
-        <item>Server 2</item>
-        <item>Server 3</item>
+        <item>Hochschule Rapperswil</item>
+        <item>Berner Fachochschule</item>
+        <item>Hochschule für Technik und Wirtschaft</item>
     </string-array>
 </resources>
