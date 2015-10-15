@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getFragmentManager().beginTransaction().replace(R.id.content, new LoginFragment()).commit();
+        getFragmentManager().beginTransaction().replace(R.id.content, new HomeFragment()).commit();
     }
 
     @Override
@@ -59,6 +59,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         switch(item.getItemId()) {
+            case R.id.drawerHome:
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content, new HomeFragment())
+                        .commit();
+                break;
             case R.id.drawerLogin:
                 getFragmentManager()
                         .beginTransaction()
