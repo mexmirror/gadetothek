@@ -8,12 +8,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import ch.hsr.mge.gadgeothek.domain.Reservation;
+import ch.hsr.mge.gadgeothek.domain.Loan;
 
-public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> {
-    private List<Reservation> reservationList;
-    public ReservationAdapter(List<Reservation> list){
-        this.reservationList = list;
+public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
+    private List<Loan> loanList;
+    public LoanAdapter(List<Loan> list){
+        this.loanList = list;
     }
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -29,24 +29,24 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Reservation reservation = reservationList.get(position);
-        holder.vendor.setText(reservation.getGadget().getManufacturer());
-        holder.product.setText(reservation.getGadget().getName());
-        holder.available.setText(reservation.getReservationDate().toString());
-        holder.price.setText(String.valueOf(reservation.getGadget().getPrice()) + " CHF");
+        final Loan loan = loanList.get(position);
+        holder.vendor.setText(loan.getGadget().getManufacturer());
+        holder.product.setText(loan.getGadget().getName());
+        holder.available.setText(loan.getPickupDate().toString());
+        holder.price.setText(String.valueOf(loan.getGadget().getPrice()) + " CHF");
     }
 
     @Override
     public int getItemCount() {
-        return reservationList.size();
+        return loanList.size();
     }
 
-    public void add(int position, Reservation res){
-        reservationList.add(position, res);
+    public void add(int position, Loan loan){
+        loanList.add(position, loan);
         notifyItemInserted(position);
     }
-    public void remove(int position, Reservation res){
-        reservationList.remove(res);
+    public void remove(int position, Loan loan){
+        loanList.remove(loan);
         notifyItemRemoved(position);
     }
 

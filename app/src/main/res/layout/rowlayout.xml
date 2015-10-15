@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Vendor"
-        android:id="@+id/resrec_vendor"
+        android:id="@+id/row_vendor"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Available at"
-        android:id="@+id/resrec_available"
+        android:id="@+id/row_available"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
@@ -37,8 +37,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Product"
-        android:id="@+id/resrec_product"
-        android:layout_below="@+id/resrec_vendor"
+        android:id="@+id/row_product"
+        android:layout_below="@+id/row_vendor"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textSize="35sp"/>
@@ -48,8 +48,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Price"
-        android:id="@+id/resrec_price"
-        android:layout_alignBottom="@+id/resrec_product"
-        android:layout_alignRight="@+id/resrec_available"
-        android:layout_alignEnd="@+id/resrec_available" />
+        android:id="@+id/row_price"
+        android:layout_alignBottom="@+id/row_product"
+        android:layout_alignRight="@+id/row_available"
+        android:layout_alignEnd="@+id/row_available" />
 </RelativeLayout>
