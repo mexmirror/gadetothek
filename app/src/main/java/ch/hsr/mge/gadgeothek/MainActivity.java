@@ -1,5 +1,6 @@
 package ch.hsr.mge.gadgeothek;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private FragmentManager fragmentManager;
 
 
     @Override
@@ -31,7 +33,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getFragmentManager().beginTransaction().replace(R.id.content, new HomeFragment()).commit();
+        fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content, new HomeFragment()).addToBackStack("home").commit();
+
+        getFragmentManager().addOnBackStackChangedListener(
+                new FragmentManager.OnBackStackChangedListener() {
+                    @Override
+                    public void onBackStackChanged() {
+
+                    }
+                }
+        );
+    }
+
+    public void onBackPressed() {
+        if(fragmentManager.getBackStackEntryCount() <= 1){
+            finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
     }
 
     @Override
@@ -50,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new SettingsFragment())
+                        .addToBackStack("settings")
                         .commit();
                 return true;
         }
@@ -63,24 +84,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new HomeFragment())
+                        .addToBackStack("home")
                         .commit();
                 break;
             case R.id.drawerLogin:
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new LoginFragment())
+                        .addToBackStack("login")
                         .commit();
                 break;
             case R.id.drawerLoan:
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new LoanFragment())
+                        .addToBackStack("loan")
                         .commit();
                 break;
             case R.id.drawerReservation:
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new ReservationFragment())
+                        .addToBackStack("reservation")
                         .commit();
                 break;
         }
@@ -88,5 +113,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawers();
         return true;
     }
+
 
 }

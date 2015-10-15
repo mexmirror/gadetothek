@@ -36,7 +36,7 @@ public class RegisterFragment extends Fragment {
                     @Override
                     public void onCompletion(Boolean input) {
                         if(input){
-                            getFragmentManager().beginTransaction().replace(R.id.content, new LoginFragment()).commit();
+                            getFragmentManager().beginTransaction().replace(R.id.content, new LoginFragment()).addToBackStack("login").commit();
                         } else {
                             Toast.makeText(getActivity(), "Registration failed. Please try again later", Toast.LENGTH_SHORT).show();
                         }

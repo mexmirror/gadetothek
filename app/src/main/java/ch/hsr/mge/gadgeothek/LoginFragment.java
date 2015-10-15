@@ -34,7 +34,7 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onCompletion(Boolean input) {
                         if (input) {
-                            getFragmentManager().beginTransaction().replace(R.id.content, new ReservationFragment()).commit();
+                            getFragmentManager().beginTransaction().replace(R.id.content, new ReservationFragment()).addToBackStack("reservation").commit();
                         } else {
                             Toast.makeText(getActivity(), "Username or password cannot be found. \n You may want to register first", Toast.LENGTH_LONG).show();
                             ((EditText)view.findViewById(R.id.login_password)).setText("");
@@ -56,6 +56,7 @@ public class LoginFragment extends Fragment {
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new RegisterFragment())
+                        .addToBackStack("register")
                         .commit();
             }
         });
