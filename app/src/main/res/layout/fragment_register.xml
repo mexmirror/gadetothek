@@ -78,8 +78,6 @@
         android:text="Register"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/reg_register"
-        android:layout_alignRight="@id/reg_title"
-        android:layout_alignEnd="@id/reg_title" />
+        android:id="@+id/reg_register" />
 
 </RelativeLayout>
