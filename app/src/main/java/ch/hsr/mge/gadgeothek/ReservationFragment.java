@@ -2,11 +2,13 @@ package ch.hsr.mge.gadgeothek;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,18 +49,22 @@ public class ReservationFragment extends Fragment {
             public void onError(String message) {
                 recyclerView.setVisibility(View.GONE);
                 noData.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(), "An error occured while gathering data.\n" + message, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),
+                        "An error occured while gathering data.\n" + message,
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.res_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content, new NewReservationFragment())
+                        .addToBackStack("new reservation")
+                        .commit();
             }
         });
         return view;
     }
-
-    public void onPlusClicked(View button){
-
-    }
-
-    public void addReservation(Gadget gadget){
-
-    }
-
 }

@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import ch.hsr.mge.gadgeothek.domain.Reservation;
@@ -32,7 +34,8 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         final Reservation reservation = reservationList.get(position);
         holder.vendor.setText(reservation.getGadget().getManufacturer());
         holder.product.setText(reservation.getGadget().getName());
-        holder.available.setText(reservation.getReservationDate().toString());
+        String formattedDate = new SimpleDateFormat("dd.MM.yy").format(reservation.getReservationDate());
+        holder.available.setText("Available: " + formattedDate);
         holder.price.setText(String.valueOf(reservation.getGadget().getPrice()) + " CHF");
     }
 

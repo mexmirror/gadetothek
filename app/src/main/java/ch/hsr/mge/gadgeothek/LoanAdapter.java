@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import ch.hsr.mge.gadgeothek.domain.Loan;
@@ -32,7 +33,8 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
         final Loan loan = loanList.get(position);
         holder.vendor.setText(loan.getGadget().getManufacturer());
         holder.product.setText(loan.getGadget().getName());
-        holder.available.setText(loan.getPickupDate().toString());
+        String formattedDate = new SimpleDateFormat("dd.MM.yy").format(loan.getPickupDate());
+        holder.available.setText("To: " + formattedDate);
         holder.price.setText(String.valueOf(loan.getGadget().getPrice()) + " CHF");
     }
 
