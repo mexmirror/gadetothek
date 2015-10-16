@@ -9,7 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
+import ch.hsr.mge.gadgeothek.service.Callback;
+import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,14 +37,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content, new HomeFragment()).addToBackStack("home").commit();
+        if(LibraryService.isLoggedIn()) {
+            fragmentManager.beginTransaction().replace(R.id.content, new HomeFragment()).addToBackStack("home").commit();
+        } else {
+            fragmentManager.beginTransaction().replace(R.id.content, new LoginFragment()).commit();
+        }
 
         getFragmentManager().addOnBackStackChangedListener(
                 new FragmentManager.OnBackStackChangedListener() {
                     @Override
-                    public void onBackStackChanged() {
-
-                    }
+                    public void onBackStackChanged() {}
                 }
         );
     }
@@ -73,6 +78,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .addToBackStack("settings")
                         .commit();
                 return true;
+            case R.id.action_logout:
+                LibraryService.logout(new Callback<Boolean>() {
+                    @Override
+                    public void onCompletion(Boolean input) {
+                        getFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.content, new LoginFragment())
+                                .commit();
+                    }
+
+                    @Override
+                    public void onError(String message) {
+
+                    }
+                });
         }
         return super.onOptionsItemSelected(item);
     }
@@ -84,21 +104,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new HomeFragment())
-                        .addToBackStack("home")
                         .commit();
                 break;
-            case R.id.drawerLogin:
+/*            case R.id.drawerLogin:
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new LoginFragment())
-                        .addToBackStack("login")
                         .commit();
-                break;
+                break;*/
             case R.id.drawerLoan:
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new LoanFragment())
-                        .addToBackStack("loan")
                         .commit();
                 break;
             case R.id.drawerReservation:
