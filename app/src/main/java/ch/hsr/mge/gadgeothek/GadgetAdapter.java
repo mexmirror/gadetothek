@@ -13,8 +13,10 @@ import ch.hsr.mge.gadgeothek.domain.Gadget;
 
 public class GadgetAdapter extends  RecyclerView.Adapter<GadgetAdapter.ViewHolder>{
     private List<Gadget> gadgetList;
-    public GadgetAdapter(List<Gadget> list){
+    private View.OnClickListener listener;
+    public GadgetAdapter(List<Gadget> list, View.OnClickListener listener){
         this.gadgetList = list;
+        this.listener = listener;
     }
     @Override
     public GadgetAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,12 +27,7 @@ public class GadgetAdapter extends  RecyclerView.Adapter<GadgetAdapter.ViewHolde
         TextView product = (TextView)view.findViewById(R.id.row_product);
         TextView price = (TextView)view.findViewById(R.id.row_price);
         ViewHolder viewHolder = new ViewHolder(view, vendor, product, available, price);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         return viewHolder;
     }
 
@@ -48,7 +45,7 @@ public class GadgetAdapter extends  RecyclerView.Adapter<GadgetAdapter.ViewHolde
         return gadgetList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView vendor;
         public TextView product;
         public TextView available;
@@ -60,7 +57,13 @@ public class GadgetAdapter extends  RecyclerView.Adapter<GadgetAdapter.ViewHolde
             this.product = product;
             this.available = available;
             this.price = price;
+            itemView.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v);
         }
     }
 }

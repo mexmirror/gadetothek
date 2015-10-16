@@ -11,7 +11,7 @@ import java.util.List;
 
 import ch.hsr.mge.gadgeothek.domain.Loan;
 
-public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
+public class LoanAdapter extends RecyclerView.Adapter<ViewHolder> {
     private List<Loan> loanList;
     public LoanAdapter(List<Loan> list){
         this.loanList = list;
@@ -50,21 +50,5 @@ public class LoanAdapter extends RecyclerView.Adapter<LoanAdapter.ViewHolder> {
     public void remove(int position, Loan loan){
         loanList.remove(loan);
         notifyItemRemoved(position);
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView vendor;
-        public TextView product;
-        public TextView available;
-        public TextView price;
-
-        public ViewHolder(View itemView, TextView vendor, TextView product, TextView available, TextView price) {
-            super(itemView);
-            this.vendor = vendor;
-            this.product = product;
-            this.available = available;
-            this.price = price;
-
-        }
     }
 }

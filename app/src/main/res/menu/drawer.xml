@@ -8,11 +8,13 @@
             android:icon="@drawable/ic_home_black_24dp"
             android:title="@string/home" />
 
+<!--
         <item
             android:id="@+id/drawerLogin"
             android:checked="true"
             android:icon="@drawable/ic_key"
             android:title="@string/login" />
+-->
 
         <item
             android:id="@+id/drawerLoan"
