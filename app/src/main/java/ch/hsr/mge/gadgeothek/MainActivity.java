@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 LibraryService.logout(new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean input) {
+                        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                         getFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.content, new LoginFragment())
@@ -122,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new ReservationFragment())
-                        .addToBackStack("reservation")
                         .commit();
                 break;
         }
