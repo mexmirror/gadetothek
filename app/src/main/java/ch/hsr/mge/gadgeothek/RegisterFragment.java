@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ public class RegisterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_register, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
         Button registerButton = (Button)view.findViewById(R.id.reg_register);
         registerButton.setOnClickListener(new View.OnClickListener(){
 

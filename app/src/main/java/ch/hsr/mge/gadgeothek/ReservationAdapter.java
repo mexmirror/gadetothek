@@ -1,6 +1,8 @@
 package ch.hsr.mge.gadgeothek;
 
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ViewHolder> {
         String formattedDate = new SimpleDateFormat("dd.MM.yy").format(reservation.getReservationDate());
         holder.available.setText("Available: " + formattedDate);
         holder.price.setText(String.valueOf(reservation.getGadget().getPrice()) + " CHF");
+
     }
 
     @Override

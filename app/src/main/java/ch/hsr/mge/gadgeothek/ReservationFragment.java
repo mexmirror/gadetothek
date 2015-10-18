@@ -4,8 +4,11 @@ import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,9 @@ public class ReservationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =  inflater.inflate(R.layout.fragment_reservation, container, false);
+        AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
+        appCompatActivity.getSupportActionBar().setTitle("Reservation");
+        appCompatActivity.getSupportActionBar().show();
         recyclerView = (RecyclerView)view.findViewById(R.id.res_recyclerView);
         noData = (TextView)view.findViewById(R.id.res_no_data);
         layoutManager = new LinearLayoutManager(getActivity());

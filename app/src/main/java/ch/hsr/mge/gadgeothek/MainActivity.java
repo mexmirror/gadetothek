@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         fragmentManager = getFragmentManager();
         if(LibraryService.isLoggedIn()) {
-            fragmentManager.beginTransaction().replace(R.id.content, new HomeFragment()).addToBackStack("home").commit();
+            fragmentManager.beginTransaction().replace(R.id.content, new HomeFragment()).commit();
         } else {
             fragmentManager.beginTransaction().replace(R.id.content, new LoginFragment()).commit();
         }
@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void onBackPressed() {
-        if(fragmentManager.getBackStackEntryCount() <= 1){
-            finish();
-        } else {
+        if(getFragmentManager().getBackStackEntryCount() > 0){
             getFragmentManager().popBackStack();
+        } else {
+            finish();
         }
     }
 
@@ -130,6 +130,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawers();
         return true;
     }
-
-
 }
