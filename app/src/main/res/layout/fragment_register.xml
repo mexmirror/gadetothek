@@ -8,15 +8,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/gadget_wide_trans" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Register"
         android:id="@+id/reg_title"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp" />
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -24,11 +28,10 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/reg_student_id"
-        android:layout_below="@id/reg_title"
-        android:layout_marginTop="94dp"
+        android:hint="Student ID"
+        android:layout_below="@+id/reg_title"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:hint="Student ID"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -39,11 +42,10 @@
         android:ems="10"
         android:id="@+id/reg_name"
         android:hint="Name"
-        android:layout_below="@id/reg_student_id"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/reg_student_id"
+        android:layout_alignParentRight="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -52,11 +54,10 @@
         android:ems="10"
         android:id="@+id/reg_email"
         android:hint="E-Mail"
-        android:layout_below="@id/reg_name"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/reg_name"
+        android:layout_alignParentRight="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -65,11 +66,10 @@
         android:ems="10"
         android:id="@+id/reg_password"
         android:hint="Password"
-        android:layout_below="@id/reg_email"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/reg_email"
+        android:layout_alignParentRight="true" />
 
     <Button
         style="@style/MyButtonStyle"
