@@ -30,8 +30,8 @@ public class LoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mail = ((EditText) view.findViewById(R.id.login_email)).getText().toString();
-                String password = ((EditText) view.findViewById(R.id.login_password)).getText().toString();
+                String mail = ((EditText) view.findViewById(R.id.login_email_input)).getText().toString();
+                String password = ((EditText) view.findViewById(R.id.login_password_input)).getText().toString();
                 InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
                         getActivity().INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);

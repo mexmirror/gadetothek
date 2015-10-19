@@ -30,10 +30,10 @@ public class RegisterFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                String studentId = ((TextView)view.findViewById(R.id.reg_student_id)).getText().toString();
-                String mail = ((TextView)view.findViewById(R.id.reg_email)).getText().toString();
-                String password = ((TextView)view.findViewById(R.id.reg_password)).getText().toString();
-                String name = ((TextView)view.findViewById(R.id.reg_name)).getText().toString();
+                String studentId = ((TextView)view.findViewById(R.id.reg_student_id_input)).getText().toString();
+                String mail = ((TextView)view.findViewById(R.id.reg_email_input)).getText().toString();
+                String password = ((TextView)view.findViewById(R.id.reg_password_input)).getText().toString();
+                String name = ((TextView)view.findViewById(R.id.reg_name_input)).getText().toString();
                 LibraryService.register(mail, password, name, studentId, new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean input) {
