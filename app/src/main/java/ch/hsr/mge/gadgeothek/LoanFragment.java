@@ -28,7 +28,7 @@ public class LoanFragment extends Fragment {
         AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
         appCompatActivity.getSupportActionBar().setTitle("Loan");
         recyclerView = (RecyclerView)view.findViewById(R.id.loan_recyclerView);
-        final TextView noData =(TextView)view.findViewById(R.id.loan_no_data);
+        final ViewGroup noData =(ViewGroup)view.findViewById(R.id.loan_no_data);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         LibraryService.getLoansForCustomer(new Callback<List<Loan>>() {
