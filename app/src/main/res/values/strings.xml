@@ -7,7 +7,5 @@
     <string name="loan">Loan</string>
     <string name="reservation">Reservation</string>
     <string name="home">Home</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="newres_add_failed">Failed to load</string>
 </resources>

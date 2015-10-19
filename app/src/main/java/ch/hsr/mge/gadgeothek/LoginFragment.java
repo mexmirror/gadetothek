@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,8 +23,8 @@ public class LoginFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         LibraryService.setServerAddress("http://mge1.dev.ifs.hsr.ch/public");
-        //http://mge1.dev.ifs.hsr.ch/public
         final View view = inflater.inflate(R.layout.fragment_login, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
         Button loginButton = (Button)view.findViewById(R.id.login_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,7 +35,7 @@ public class LoginFragment extends Fragment {
                     @Override
                     public void onCompletion(Boolean input) {
                         if (input) {
-                            getFragmentManager().beginTransaction().replace(R.id.content, new ReservationFragment()).addToBackStack("reservation").commit();
+                            getFragmentManager().beginTransaction().replace(R.id.content, new HomeFragment()).commit();
                         } else {
                             Toast.makeText(getActivity(), "Username or password cannot be found. \n You may want to register first", Toast.LENGTH_LONG).show();
                             ((EditText)view.findViewById(R.id.login_password)).setText("");
@@ -56,7 +57,7 @@ public class LoginFragment extends Fragment {
                 getFragmentManager()
                         .beginTransaction()
                         .replace(R.id.content, new RegisterFragment())
-                        .addToBackStack("register")
+                        .addToBackStack("login")
                         .commit();
             }
         });

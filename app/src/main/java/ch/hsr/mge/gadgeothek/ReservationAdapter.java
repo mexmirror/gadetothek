@@ -1,6 +1,8 @@
 package ch.hsr.mge.gadgeothek;
 
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,7 @@ import java.util.List;
 
 import ch.hsr.mge.gadgeothek.domain.Reservation;
 
-public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHolder> {
+public class ReservationAdapter extends RecyclerView.Adapter<ViewHolder> {
     private List<Reservation> reservationList;
     public ReservationAdapter(List<Reservation> list){
         this.reservationList = list;
@@ -25,8 +27,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         TextView available = (TextView)view.findViewById(R.id.row_available);
         TextView product = (TextView)view.findViewById(R.id.row_product);
         TextView price = (TextView)view.findViewById(R.id.row_price);
-        ViewHolder viewHolder = new ViewHolder(view, vendor, product, available, price);
-        return viewHolder;
+        return new ViewHolder(view, vendor, product, available, price);
     }
 
     @Override
@@ -37,6 +38,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         String formattedDate = new SimpleDateFormat("dd.MM.yy").format(reservation.getReservationDate());
         holder.available.setText("Available: " + formattedDate);
         holder.price.setText(String.valueOf(reservation.getGadget().getPrice()) + " CHF");
+
     }
 
     @Override
@@ -44,28 +46,10 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         return reservationList.size();
     }
 
-    public void add(int position, Reservation res){
-        reservationList.add(position, res);
-        notifyItemInserted(position);
+    public void add(){
+        //TODO addRefresh
     }
     public void remove(int position, Reservation res){
-        reservationList.remove(res);
-        notifyItemRemoved(position);
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView vendor;
-        public TextView product;
-        public TextView available;
-        public TextView price;
-
-        public ViewHolder(View itemView, TextView vendor, TextView product, TextView available, TextView price) {
-            super(itemView);
-            this.vendor = vendor;
-            this.product = product;
-            this.available = available;
-            this.price = price;
-
-        }
+        // TODO: Add refresh
     }
 }

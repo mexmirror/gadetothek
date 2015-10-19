@@ -1,10 +1,14 @@
 package ch.hsr.mge.gadgeothek;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,17 +25,40 @@ import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 
 public class ReservationFragment extends Fragment {
-    private ReservationAdapter adapter;
+    private static ReservationAdapter adapter;
+    private TextView noData;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view =  inflater.inflate(R.layout.fragment_reservation, container, false);
+        AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
+        appCompatActivity.getSupportActionBar().setTitle("Reservation");
+        appCompatActivity.getSupportActionBar().show();
         recyclerView = (RecyclerView)view.findViewById(R.id.res_recyclerView);
-        final TextView noData = (TextView)view.findViewById(R.id.res_no_data);
+        noData = (TextView)view.findViewById(R.id.res_no_data);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        LibraryService.getReservationsForCustomer(new Callback<List<Reservation>>() {
+        LibraryService.getReservationsForCustomer(getReservationsCallback());
+        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.res_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.content, new NewReservationFragment())
+                        .addToBackStack("reservation")
+                        .commit();
+            }
+        });
+        return view;
+    }
+    public void refresh(){
+        LibraryService.getReservationsForCustomer(getReservationsCallback());
+    }
+
+    private Callback<List<Reservation>> getReservationsCallback(){
+        return new Callback<List<Reservation>>() {
             @Override
             public void onCompletion(List<Reservation> input) {
                 if (!input.isEmpty()) {
@@ -53,18 +80,6 @@ public class ReservationFragment extends Fragment {
                         "An error occured while gathering data.\n" + message,
                         Toast.LENGTH_LONG).show();
             }
-        });
-        FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.res_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content, new NewReservationFragment())
-                        .addToBackStack("new reservation")
-                        .commit();
-            }
-        });
-        return view;
+        };
     }
 }

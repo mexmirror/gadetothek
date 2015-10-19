@@ -6,36 +6,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import ch.hsr.mge.gadgeothek.domain.Gadget;
 
-public class GadgetAdapter extends  RecyclerView.Adapter<GadgetAdapter.ViewHolder>{
+public class GadgetAdapter extends  RecyclerView.Adapter<GadgetAdapter.GadgetViewHolder>{
     private List<Gadget> gadgetList;
-    public GadgetAdapter(List<Gadget> list){
+    private View.OnClickListener listener;
+    public GadgetAdapter(List<Gadget> list, View.OnClickListener listener){
         this.gadgetList = list;
+        this.listener = listener;
     }
     @Override
-    public GadgetAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public GadgetViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.rowlayout, parent, false);
         TextView vendor = (TextView)view.findViewById(R.id.row_vendor);
         TextView available = (TextView)view.findViewById(R.id.row_available);
         TextView product = (TextView)view.findViewById(R.id.row_product);
         TextView price = (TextView)view.findViewById(R.id.row_price);
-        ViewHolder viewHolder = new ViewHolder(view, vendor, product, available, price);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        return viewHolder;
+        return new GadgetViewHolder(view, vendor, product, available, price);
     }
 
     @Override
-    public void onBindViewHolder(GadgetAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(GadgetViewHolder holder, int position) {
         final Gadget gadget = gadgetList.get(position);
         holder.vendor.setText(gadget.getManufacturer());
         holder.product.setText(gadget.getName());
@@ -48,19 +42,17 @@ public class GadgetAdapter extends  RecyclerView.Adapter<GadgetAdapter.ViewHolde
         return gadgetList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView vendor;
-        public TextView product;
-        public TextView available;
-        public TextView price;
+    public class GadgetViewHolder extends ViewHolder implements View.OnClickListener {
 
-        public ViewHolder(View itemView, TextView vendor, TextView product, TextView available, TextView price) {
-            super(itemView);
-            this.vendor = vendor;
-            this.product = product;
-            this.available = available;
-            this.price = price;
+        public GadgetViewHolder(View itemView, TextView vendor, TextView product, TextView available, TextView price) {
+            super(itemView, vendor, product, available, price);
+            itemView.setOnClickListener(this);
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            listener.onClick(v);
         }
     }
 }
