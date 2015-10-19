@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -31,6 +32,9 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 String mail = ((EditText) view.findViewById(R.id.login_email)).getText().toString();
                 String password = ((EditText) view.findViewById(R.id.login_password)).getText().toString();
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
+                        getActivity().INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                 LibraryService.login(mail, password, new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean input) {
