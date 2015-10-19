@@ -11,14 +11,10 @@ import android.view.ViewGroup;
 public class HomeFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
         appCompatActivity.getSupportActionBar().setTitle("Home");
         appCompatActivity.getSupportActionBar().show();
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
-
-
 }
