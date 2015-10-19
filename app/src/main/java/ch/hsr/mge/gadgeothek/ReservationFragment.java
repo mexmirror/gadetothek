@@ -1,6 +1,7 @@
 package ch.hsr.mge.gadgeothek;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
@@ -35,6 +36,8 @@ public class ReservationFragment extends Fragment {
         AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
         appCompatActivity.getSupportActionBar().setTitle("Reservation");
         appCompatActivity.getSupportActionBar().show();
+
+
         recyclerView = (RecyclerView)view.findViewById(R.id.res_recyclerView);
         noData = (TextView)view.findViewById(R.id.res_no_data);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -51,6 +54,39 @@ public class ReservationFragment extends Fragment {
                         .commit();
             }
         });
+
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                final int fromPos = viewHolder.getAdapterPosition();
+                final Reservation reservation = adapter.remove(fromPos);
+                LibraryService.deleteReservation(reservation, new Callback<Boolean>() {
+                    @Override
+                    public void onCompletion(Boolean input) {
+                        if(input){
+                            adapter.notifyItemRemoved(fromPos);
+                            Snackbar.make(view, "Deleted " + reservation.getGadget().getName(), Snackbar.LENGTH_LONG).show();
+                        } else {
+                            adapter.refresh();
+                            Snackbar.make(view, "Error during server delete process", Snackbar.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(getActivity(), "Error during delete process", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        };
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         return view;
     }
     public void refresh(){

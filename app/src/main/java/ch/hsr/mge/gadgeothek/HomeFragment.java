@@ -16,6 +16,7 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
         appCompatActivity.getSupportActionBar().setTitle("Home");
+        appCompatActivity.getSupportActionBar().show();
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
