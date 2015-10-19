@@ -17,9 +17,9 @@
         android:id="@+id/res_no_data">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/ic_add_shopping_cart_48px"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:src="@drawable/shopping_cart_add"
             android:id="@+id/no_data_image"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true" />
