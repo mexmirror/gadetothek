@@ -27,7 +27,7 @@ import ch.hsr.mge.gadgeothek.service.LibraryService;
 
 public class ReservationFragment extends Fragment {
     private static ReservationAdapter adapter;
-    private TextView noData;
+    private ViewGroup noData;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     @Override
@@ -39,9 +39,10 @@ public class ReservationFragment extends Fragment {
 
 
         recyclerView = (RecyclerView)view.findViewById(R.id.res_recyclerView);
-        noData = (TextView)view.findViewById(R.id.res_no_data);
+        noData = (ViewGroup)view.findViewById(R.id.res_no_data);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+
         LibraryService.getReservationsForCustomer(getReservationsCallback());
         FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.res_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +72,9 @@ public class ReservationFragment extends Fragment {
                         if(input){
                             adapter.notifyItemRemoved(fromPos);
                             Snackbar.make(view, "Deleted " + reservation.getGadget().getName(), Snackbar.LENGTH_LONG).show();
+                            LibraryService.getReservationsForCustomer(getReservationsCallback());
                         } else {
-                            adapter.refresh();
+                            // adapter.refresh(); TODO refresh
                             Snackbar.make(view, "Error during server delete process", Snackbar.LENGTH_LONG).show();
                         }
                     }

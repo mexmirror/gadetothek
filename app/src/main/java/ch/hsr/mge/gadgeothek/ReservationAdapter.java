@@ -6,6 +6,8 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +21,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ViewHolder> {
     public ReservationAdapter(List<Reservation> list){
         this.reservationList = list;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -49,6 +52,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ViewHolder> {
     public void add(){
         //TODO addRefresh
     }
+
     public Reservation remove(int position){
         Reservation reservation = reservationList.get(position);
         reservationList.remove(position);
@@ -56,6 +60,6 @@ public class ReservationAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     public void refresh() {
-
+        //TODO addRefresh
     }
 }
