@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="172dp"
-    android:background="@drawable/background"
+    android:background="@drawable/drawer_background"
     android:orientation="vertical"
     android:paddingTop="@dimen/status_bar_height"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
@@ -12,10 +12,11 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_margin="@dimen/activity_vertical_margin"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        android:src="@drawable/heisenberg"/>
 
     <TextView
-        android:text="Reserviere noch heute deine Traumfrau"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/drawer"
