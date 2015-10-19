@@ -72,9 +72,9 @@ public class ReservationFragment extends Fragment {
                         if(input){
                             adapter.notifyItemRemoved(fromPos);
                             Snackbar.make(view, "Deleted " + reservation.getGadget().getName(), Snackbar.LENGTH_LONG).show();
-                            LibraryService.getReservationsForCustomer(getReservationsCallback());
+                            refresh();
                         } else {
-                            // adapter.refresh(); TODO refresh
+                            refresh();
                             Snackbar.make(view, "Error during server delete process", Snackbar.LENGTH_LONG).show();
                         }
                     }

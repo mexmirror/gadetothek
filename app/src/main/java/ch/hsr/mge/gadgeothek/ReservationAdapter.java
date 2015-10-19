@@ -49,17 +49,10 @@ public class ReservationAdapter extends RecyclerView.Adapter<ViewHolder> {
         return reservationList.size();
     }
 
-    public void add(){
-        //TODO addRefresh
-    }
-
     public Reservation remove(int position){
         Reservation reservation = reservationList.get(position);
         reservationList.remove(position);
         return reservation;
     }
 
-    public void refresh() {
-        //TODO addRefresh
-    }
 }
