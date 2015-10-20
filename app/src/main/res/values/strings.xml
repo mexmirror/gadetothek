@@ -21,4 +21,7 @@
     <string name="available">Available at</string>
     <string name="product">Product</string>
     <string name="price">Price</string>
+    <string name="res_no_data">No reservations found</string>
+    <string name="loan_no_data">No loans found</string>
+    <string name="newrew_no_data">No gadgets found</string>
 </resources>
