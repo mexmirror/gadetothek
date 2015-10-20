@@ -34,21 +34,25 @@ public class RegisterFragment extends Fragment {
                 String mail = ((TextView)view.findViewById(R.id.reg_email_input)).getText().toString();
                 String password = ((TextView)view.findViewById(R.id.reg_password_input)).getText().toString();
                 String name = ((TextView)view.findViewById(R.id.reg_name_input)).getText().toString();
-                LibraryService.register(mail, password, name, studentId, new Callback<Boolean>() {
-                    @Override
-                    public void onCompletion(Boolean input) {
-                        if(input){
-                            getFragmentManager().beginTransaction().replace(R.id.content, new LoginFragment()).addToBackStack("login").commit();
-                        } else {
-                            Toast.makeText(getActivity(), "Registration failed. Please try again later", Toast.LENGTH_SHORT).show();
+                if(!(studentId.isEmpty() | mail.isEmpty() | password.isEmpty() | name.isEmpty())) {
+                    LibraryService.register(mail, password, name, studentId, new Callback<Boolean>() {
+                        @Override
+                        public void onCompletion(Boolean input) {
+                            if (input) {
+                                getFragmentManager().beginTransaction().replace(R.id.content, new LoginFragment()).addToBackStack("login").commit();
+                            } else {
+                                Toast.makeText(getActivity(), "Registration failed. Please try again later", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(getActivity(), "Error during register process\n" + message, Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onError(String message) {
+                            Toast.makeText(getActivity(), "Error during register process\n" + message, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getActivity(), "Each field is required to register", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         return view;

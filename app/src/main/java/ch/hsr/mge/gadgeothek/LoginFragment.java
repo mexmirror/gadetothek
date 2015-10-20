@@ -32,25 +32,28 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 String mail = ((EditText) view.findViewById(R.id.login_email_input)).getText().toString();
                 String password = ((EditText) view.findViewById(R.id.login_password_input)).getText().toString();
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
-                        getActivity().INPUT_METHOD_SERVICE);
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(getActivity().INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-                LibraryService.login(mail, password, new Callback<Boolean>() {
-                    @Override
-                    public void onCompletion(Boolean input) {
-                        if (input) {
-                            getFragmentManager().beginTransaction().replace(R.id.content, new HomeFragment()).commit();
-                        } else {
-                            Toast.makeText(getActivity(), "Username or password cannot be found. \n You may want to register first", Toast.LENGTH_LONG).show();
-                            ((EditText)view.findViewById(R.id.login_password)).setText("");
+                if(!(mail.isEmpty() | password.isEmpty())) {
+                    LibraryService.login(mail, password, new Callback<Boolean>() {
+                        @Override
+                        public void onCompletion(Boolean input) {
+                            if (input) {
+                                getFragmentManager().beginTransaction().replace(R.id.content, new HomeFragment()).commit();
+                            } else {
+                                Toast.makeText(getActivity(), "Username or password cannot be found. \n You may want to register first", Toast.LENGTH_LONG).show();
+                                ((EditText) view.findViewById(R.id.login_password)).setText("");
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onError(String message) {
-                        Toast.makeText(getActivity(), "Error during login process", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onError(String message) {
+                            Toast.makeText(getActivity(), "Error during login process", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getActivity(), "Login and password is required", Toast.LENGTH_LONG).show();
+                }
 
             }
         });
