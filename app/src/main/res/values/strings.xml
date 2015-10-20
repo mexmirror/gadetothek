@@ -1,11 +1,24 @@
 <resources>
     <string name="app_name">Gadgeothek</string>
-
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Server Settings</string>
     <string name="login">Login</string>
     <string name="loan">Loan</string>
     <string name="reservation">Reservation</string>
+    <string name="register">Register</string>
+    <string name="password">Password</string>
     <string name="home">Home</string>
     <string name="newres_add_failed">Failed to load</string>
+    <string name="no_loan">No loans here</string>
+    <string name="email">E-Mail Address</string>
+    <string name="no_gadgets">No gadgets found</string>
+    <string name="name">Name</string>
+    <string name="student_id">Student ID</string>
+    <string name="no_reservation">No reservations done</string>
+    <string name="connect">Connect</string>
+    <string name="server_settings">Select your server</string>
+    <string name="vendor">Vendor</string>
+    <string name="available">Available at</string>
+    <string name="product">Product</string>
+    <string name="price">Price</string>
 </resources>

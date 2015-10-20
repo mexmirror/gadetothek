@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="No gadgets found"
+        android:text="@string/no_gadgets"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/gadget_no_data"
         android:layout_centerVertical="true"

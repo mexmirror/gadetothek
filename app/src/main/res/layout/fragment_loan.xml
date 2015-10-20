@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No loans here"
+            android:text="@string/no_loan"
             android:layout_below="@id/no_data_image"
             android:textSize="24dp"
             android:layout_centerHorizontal="true"/>
