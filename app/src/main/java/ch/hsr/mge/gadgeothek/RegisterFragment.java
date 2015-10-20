@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,17 +42,17 @@ public class RegisterFragment extends Fragment {
                             if (input) {
                                 getFragmentManager().beginTransaction().replace(R.id.content, new LoginFragment()).addToBackStack("login").commit();
                             } else {
-                                Toast.makeText(getActivity(), "Registration failed. Please try again later", Toast.LENGTH_SHORT).show();
+                                Snackbar.make(view, R.string.register_failed, Snackbar.LENGTH_LONG).show();
                             }
                         }
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(getActivity(), "Error during register process\n" + message, Toast.LENGTH_SHORT).show();
+                            Snackbar.make(view, R.string.register_process_failed, Snackbar.LENGTH_LONG).show();
                         }
                     });
                 } else {
-                    Toast.makeText(getActivity(), "Each field is required to register", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "Each field is required to register", Snackbar.LENGTH_LONG).show();
                 }
             }
         });

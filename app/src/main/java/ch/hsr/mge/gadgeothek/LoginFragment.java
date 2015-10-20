@@ -4,15 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
@@ -41,18 +40,18 @@ public class LoginFragment extends Fragment {
                             if (input) {
                                 getFragmentManager().beginTransaction().replace(R.id.content, new HomeFragment()).commit();
                             } else {
-                                Toast.makeText(getActivity(), "Username or password cannot be found. \n You may want to register first", Toast.LENGTH_LONG).show();
+                                Snackbar.make(view, R.string.login_process_failed, Snackbar.LENGTH_LONG).show();
                                 ((EditText) view.findViewById(R.id.login_password)).setText("");
                             }
                         }
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(getActivity(), "Error during login process", Toast.LENGTH_SHORT).show();
+                            Snackbar.make(view, R.string.login_failed, Snackbar.LENGTH_LONG).show();
                         }
                     });
                 } else {
-                    Toast.makeText(getActivity(), "Login and password is required", Toast.LENGTH_LONG).show();
+                    Snackbar.make(view, R.string.login_empty, Snackbar.LENGTH_LONG).show();
                 }
 
             }

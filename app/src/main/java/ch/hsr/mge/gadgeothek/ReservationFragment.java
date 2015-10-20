@@ -1,11 +1,9 @@
 package ch.hsr.mge.gadgeothek;
 
-import android.content.Context;
 import android.support.design.widget.Snackbar;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,13 +11,9 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
-import ch.hsr.mge.gadgeothek.domain.Gadget;
 import ch.hsr.mge.gadgeothek.domain.Reservation;
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
@@ -43,7 +37,7 @@ public class ReservationFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        LibraryService.getReservationsForCustomer(getReservationsCallback());
+        LibraryService.getReservationsForCustomer(getReservationsCallback(view));
         FloatingActionButton fab = (FloatingActionButton)view.findViewById(R.id.res_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,13 +68,13 @@ public class ReservationFragment extends Fragment {
                             Snackbar.make(view, "Deleted " + reservation.getGadget().getName(), Snackbar.LENGTH_LONG).show();
                         } else {
                             adapter.notifyDataSetChanged();
-                            Snackbar.make(view, "Error during server delete process", Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(view, R.string.delete_process_failed, Snackbar.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onError(String message) {
-                        Toast.makeText(getActivity(), "Error during delete process", Toast.LENGTH_SHORT).show();
+                        Snackbar.make(view, R.string.delete_failed, Snackbar.LENGTH_LONG).show();
                     }
                 });
             }
@@ -90,11 +84,8 @@ public class ReservationFragment extends Fragment {
 
         return view;
     }
-    public void refresh(){
-        LibraryService.getReservationsForCustomer(getReservationsCallback());
-    }
 
-    private Callback<List<Reservation>> getReservationsCallback(){
+    private Callback<List<Reservation>> getReservationsCallback(final View view){
         return new Callback<List<Reservation>>() {
             @Override
             public void onCompletion(List<Reservation> input) {
@@ -113,9 +104,7 @@ public class ReservationFragment extends Fragment {
             public void onError(String message) {
                 recyclerView.setVisibility(View.GONE);
                 noData.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(),
-                        "An error occured while gathering data.\n" + message,
-                        Toast.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.data_gather_error, Snackbar.LENGTH_LONG).show();
             }
         };
     }

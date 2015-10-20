@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import ch.hsr.mge.gadgeothek.service.LibraryService;
 
@@ -19,7 +18,7 @@ public class SettingsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+        final View view = inflater.inflate(R.layout.fragment_settings, container, false);
         AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
         appCompatActivity.getSupportActionBar().setTitle("Settings");
         final Spinner spinner = (Spinner)view.findViewById(R.id.server_spinner);
@@ -27,13 +26,13 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
-                    Toast.makeText(getActivity(), spinner.getSelectedItem().toString() + " is not available yet", Toast.LENGTH_LONG).show();
+                    Snackbar.make(view, spinner.getSelectedItem().toString() + R.string.not_available, Snackbar.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getActivity(), "At least something must be selected", Toast.LENGTH_LONG).show();
+                Snackbar.make(view, "At least something must be selected", Snackbar.LENGTH_LONG).show();
             }
         });
         setSpinnerContent(view);
