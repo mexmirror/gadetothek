@@ -14,6 +14,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,7 +34,7 @@ public class NewReservationFragment extends Fragment {
         AppCompatActivity appCompatActivity = (AppCompatActivity)getActivity();
         appCompatActivity.getSupportActionBar().setTitle("Gadgets");
         recyclerView = (RecyclerView)view.findViewById(R.id.gadget_recyclerView);
-        final TextView noData = (TextView)view.findViewById(R.id.gadget_no_data);
+        final RelativeLayout noData = (RelativeLayout)view.findViewById(R.id.gadget_no_data);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         LibraryService.getGadgets(new Callback<List<Gadget>>() {
@@ -75,9 +76,7 @@ public class NewReservationFragment extends Fragment {
             public void onError(String message) {
                 recyclerView.setVisibility(View.GONE);
                 noData.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(),
-                        "An error occured while gathering data\n" + message,
-                        Toast.LENGTH_LONG).show();
+                Snackbar.make(view, R.string.data_gather_error, Snackbar.LENGTH_LONG).show();
             }
         });
         return view;
