@@ -31,6 +31,26 @@
     <string name="register_process_failed">An error occured during register process</string>
     <string name="delete_process_failed">Error on server during delete process</string>
     <string name="login_process_failed">Username or password could not be found.\nYou may want to register first</string>
-    <string name="not_available">is not available</string>
+    <string name="not_available">is not available.</string>
     <string name="login_empty">Login and pasword is required</string>
+    <string name="home_desc">Description</string>
+    <string name="home_title">Title</string>
+    <string name="home_item_1_title">Eine App sie alle zu reservieren</string>
+    <string name="home_item_1_desc">
+        Steinig war der Weg, die Wartezeit lang. Doch endlich ist sie da, die App der Gadgeothek.
+        Mit ihr kannst du nicht nur Herausfinden ob ein Gadget schon verfügbar ist, sondern auch reservieren und sehen wann ein Gadget überfällig ist.
+        Probier es gleich aus!
+    </string>
+    <string name="home_item_2_title">iPhones verfügbar</string>
+    <string name="home_item_2_desc">
+        Ein neuer Vertrag mit einem grossen Handyvertreiber ermöglicht es uns, ab sofort iPhones anzubieten.
+        Reserviert dir sofort eins, dann bleibt die Wartezeit klein.
+    </string>
+    <string name="home_item_3_title">Neues Maskotchen</string>
+    <string name="home_item_3_desc">
+        Wir haben uns endlich für ein Maskotchen entscheiden können. Mit 5 zu 1 Stimme haben wir uns für
+        Trixi (auf Englisch Gadget Hackwrench) entschieden. Die charmante und kluge Trixi hatte jedes Gadget zur Hand. Jederzeit!
+        Als kleiner Trost für den Verlierer, Heisenberg, aus der beliebten Serie Breaking Bad, ist er nun das Profilbild jedes
+        Benutzers, der kein eigenes Profilbild hochgeladen hat.
+    </string>
 </resources>
