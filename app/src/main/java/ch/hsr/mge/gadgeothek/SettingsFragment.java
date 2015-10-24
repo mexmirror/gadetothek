@@ -26,7 +26,9 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position != 0) {
-                    Snackbar.make(view, spinner.getSelectedItem().toString() + R.string.not_available, Snackbar.LENGTH_LONG).show();
+                    final String msg = spinner.getSelectedItem().toString()  + " " + getString(R.string.not_available);
+                    Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show();
+                    spinner.setSelection(0);
                 }
             }
 
