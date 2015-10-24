@@ -9,13 +9,15 @@
         android:id="@+id/gadget_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_below="@+id/gadget_search" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/gadget_no_data">
+        android:id="@+id/gadget_no_data"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <ImageView
             android:layout_width="250dp"
             android:layout_height="250dp"
@@ -33,23 +35,4 @@
             android:textSize="24dp"
             android:layout_centerHorizontal="true"/>
     </RelativeLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/gadget_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text=""
-            android:hint="Search here"
-            android:id="@+id/gadget_search_input"
-            android:height="60dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
-    </android.support.design.widget.TextInputLayout>
 </RelativeLayout>
