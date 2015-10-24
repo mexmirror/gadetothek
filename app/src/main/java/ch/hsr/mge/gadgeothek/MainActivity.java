@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import ch.hsr.mge.gadgeothek.service.Callback;
 import ch.hsr.mge.gadgeothek.service.LibraryService;
@@ -82,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 LibraryService.logout(new Callback<Boolean>() {
                     @Override
                     public void onCompletion(Boolean input) {
-                        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        getFragmentManager().popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                         getFragmentManager()
                                 .beginTransaction()
                                 .replace(R.id.content, new LoginFragment())
@@ -107,12 +106,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         .replace(R.id.content, new HomeFragment())
                         .commit();
                 break;
-/*            case R.id.drawerLogin:
-                getFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.content, new LoginFragment())
-                        .commit();
-                break;*/
             case R.id.drawerLoan:
                 getFragmentManager()
                         .beginTransaction()
