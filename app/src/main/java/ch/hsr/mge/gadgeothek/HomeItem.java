@@ -8,7 +8,6 @@ public class HomeItem {
     public HomeItem(String title, String description) {
         this.title = title;
         this.description = description;
-        this.description = description;
     }
     public String getTitle(){
         return title;
