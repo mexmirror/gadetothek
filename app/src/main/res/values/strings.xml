@@ -33,7 +33,7 @@
     <string name="delete_process_failed">Error on server during delete process</string>
     <string name="login_process_failed">Username or password could not be found.\nYou may want to register first</string>
     <string name="not_available">is not available.</string>
-    <string name="login_empty">Login and pasword is required</string>
+    <string name="login_empty">Login and password is required</string>
     <string name="home_desc">Description</string>
     <string name="home_title">Title</string>
     <string name="home_item_1_title">Eine App sie alle zu reservieren</string>
